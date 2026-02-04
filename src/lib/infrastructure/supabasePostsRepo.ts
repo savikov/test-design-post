@@ -8,6 +8,10 @@ export class SupabasePostsRepository implements PostsRepository {
       .select(`
         id,
         title,
+        "lead",
+        media,
+        designers,
+        status,
         author_name,
         posted_at,
         products:product_id ( slug, title )
@@ -25,6 +29,9 @@ export class SupabasePostsRepository implements PostsRepository {
     return (data ?? []).map((row: any) => ({
       id: row.id,
       title: row.title,
+      lead: row.lead ?? null,
+      designers: row.designers ?? null,
+      media: row.media ?? null,
       authorName: row.author_name,
       postedAt: row.posted_at,
       productSlug: row.products?.slug ?? null,
@@ -38,7 +45,9 @@ export class SupabasePostsRepository implements PostsRepository {
       .select(`
         id,
         title,
-        body_md,
+        "lead",
+        media,
+        designers,
         status,
         author_name,
         posted_at,
@@ -53,7 +62,9 @@ export class SupabasePostsRepository implements PostsRepository {
     return {
       id: data.id,
       title: data.title,
-      bodyMd: data.body_md,
+      lead: data.lead ?? null,
+      media: data.media ?? null,
+      designers: data.designers ?? null,
       status: data.status,
       authorName: data.author_name,
       postedAt: data.posted_at,

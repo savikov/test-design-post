@@ -20,6 +20,30 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Supabase Media Storage
+
+To render media in posts:
+
+1. Create a public bucket named `media` in Supabase Storage.
+2. Upload files under `posts/<postId>/...`.
+3. In the `posts` table, add the media block(s) with `storageKey` pointing to the uploaded file path.
+
+Example `media` value:
+
+```json
+[
+  {
+    "type": "image",
+    "bucket": "media",
+    "storageKey": "posts/<postId>/hero.jpg",
+    "caption": "Optional caption",
+    "order": 1
+  }
+]
+```
+
+We will add an upload admin UI later; for now this is manual.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
